@@ -1,4 +1,4 @@
-FROM openjdk:11-ea-17-jdk-slim
+FROM openjdk:17-jdk-slim
 
 #작업경로
 WORKDIR /app
