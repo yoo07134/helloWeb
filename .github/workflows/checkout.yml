@@ -1,9 +1,31 @@
 name: Our Workflow
-on: push
+on: 
+  push:
+    branches: [ main ]
 jobs:
   checkout:
     runs-on: ubuntu-latest
     steps:
-      - run: ls -al
       - uses: actions/checkout@v3
-      - run: ls -al
+      
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          
+      - name: build gradlew
+        run: ./gradlew bootJar
+      
+      - name: docker image build
+        run: docker build -t yoo07134/hello-web:latest .
+        
+      - name: docker hub login
+        run: docker/login-action@v1
+        with: 
+          username: ${{ secret.USERNAME }}
+          password: ${{ secret.PASSWORD }}
+          
+      - name: docker hun push
+        run: docker push yoo07134/hello-web:latest
+        
+      
