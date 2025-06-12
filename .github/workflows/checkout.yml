@@ -21,7 +21,7 @@ jobs:
         run: ./gradlew bootJar
       
       - name: docker image build
-        run: docker build -t yoo07134/hello-web:latest .
+        run: docker build -t ${{ secrets.USERNAME }}/hello-web:latest .
         
       - name: docker hub login
         uses: docker/login-action@v1
@@ -30,6 +30,6 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           
       - name: docker hun push
-        run: docker push yoo07134/hello-web:latest
+        run: docker push ${{ secrets.USERNAME }}/hello-web:latest
         
       
