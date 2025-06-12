@@ -26,8 +26,8 @@ jobs:
       - name: docker hub login
         uses: docker/login-action@v1
         with: 
-          username: ${{ secret.USERNAME }}
-          password: ${{ secret.PASSWORD }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
           
       - name: docker hun push
         run: docker push yoo07134/hello-web:latest
